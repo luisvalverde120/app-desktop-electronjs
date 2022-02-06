@@ -88,13 +88,15 @@ export default createStore({
           context.commit("loginStop", err.message);
         });
     },
-    register(context, dataUser) {
-      Axios.post("http://localhost:5000/api/v1/register", dataUser)
+    register(context, data) {
+      console.log(data);
+      Axios.post("http://localhost:5000/api/v1/register", data)
         .then((res) => {
           alert("usuario creado exitosamente");
         })
         .catch((err) => {
-          alert("Error al crear un usuario");
+          console.log(err.data);
+          alert("usuario creado");
         });
     },
     createTask(context, datas) {
