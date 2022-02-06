@@ -1,41 +1,63 @@
-<script>
-import { defineComponent } from "vue";
-import { Bar } from "vue3-chart-v2";
+<template>
+  <div>
+    <ApexCharts
+      width="600"
+      type="bar"
+      :options="chartOptions"
+      :series="series"
+    />
+  </div>
+  <div>
+    <button @click="updateChart">Update!</button>
+  </div>
+</template>
 
-export default defineComponent({
-  name: "Grafics",
-  extends: Bar,
+<script>
+import VueApexCharts from "vue3-apexcharts";
+
+export default {
+  name: "Chart",
+  components: {
+    ApexCharts: VueApexCharts,
+  },
   props: {
-    chartData: {
-      type: Object,
-      required: true,
+    categoriesProps: {
+      type: Array,
     },
-    chartOptions: {
-      type: Object,
-      required: false,
+    datasets: {
+      type: Array,
     },
   },
-  mounted() {
-    this.renderBarChart();
-  },
-  computed: {
-    charD() {
-      return this.chartData;
-    },
+  data: function () {
+    return {
+      chartOptions: {},
+      series: [
+        {
+          name: "horas trabajadas",
+          data: [0],
+        },
+      ],
+    };
   },
   methods: {
-    renderBarChart() {
-      this.renderChart(this.chartData, {
-        resposive: true,
-        maintainAspectRatio: false,
-      });
+    updateChart() {
+      this.chartOptions = {
+        chart: {
+          id: "vuechart-tasks",
+        },
+        xaxis: {
+          categories: this.categoriesProps,
+        },
+        dataLabels: {
+          enabled: true,
+        },
+      };
+      this.series = [
+        {
+          data: this.datasets,
+        },
+      ];
     },
   },
-  watch: {
-    data: function () {
-      //this._chart.destroy();
-      this.renderBarChart();
-    },
-  },
-});
+};
 </script>

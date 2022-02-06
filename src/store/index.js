@@ -42,7 +42,6 @@ export default createStore({
         i++;
       }
       state.taskData.totalHours = auxList;
-      console.log(state.taskData.totalHours);
     },
     taskDatesUpdate(state, tasks) {
       let i = 0;

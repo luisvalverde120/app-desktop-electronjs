@@ -76,13 +76,16 @@
       </div>
     </div>
     <div class="h-full mx-10">
-      <Grafics v-if="renderComponent" :chartData="chartData" ref="grafic" />
+      <Chart
+        :datasets="chartData.datasets"
+        :categoriesProps="chartData.categoriesChart"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import Grafics from "../components/Grafics.vue";
+import Chart from "../components/Grafics.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -100,14 +103,8 @@ export default {
         byTask: false,
       },
       chartData: {
-        labels: [0],
-        datasets: [
-          {
-            label: "Task",
-            backgroundColor: "#f87979",
-            data: [0],
-          },
-        ],
+        datasets: [0],
+        categoriesChart: [],
       },
     };
   },
@@ -137,15 +134,16 @@ export default {
         dateInit: this.datesSearch.startDate,
         dateEnd: this.datesSearch.endDate,
       });
+
       this.handleDataChart();
       this.forceRender();
     },
     ...mapGetters(["getHours", "getDates", "getTask"]),
     handleDataChart() {
-      this.chartData.labels = JSON.parse(JSON.stringify(this.getDates()));
-      this.chartData.datasets[0].data = JSON.parse(
-        JSON.stringify(this.getHours())
+      this.chartData.categoriesChart = JSON.parse(
+        JSON.stringify(this.getDates())
       );
+      this.chartData.datasets = JSON.parse(JSON.stringify(this.getHours()));
     },
     forceRender() {
       this.renderComponent = false;
@@ -155,7 +153,7 @@ export default {
     },
   },
   components: {
-    Grafics,
+    Chart,
   },
 };
 </script>
