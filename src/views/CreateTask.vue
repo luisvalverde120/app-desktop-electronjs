@@ -2,7 +2,8 @@
   <div class="h-full mx-auto">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/create-task">Create Task</router-link>
+      <router-link to="/create-task">Create Task</router-link> |
+      <router-link to="/cambiar-password">Cambiar contraseña</router-link>
     </div>
     <div class="w-full h-auto flex justify-center">
       <label class="text-2xl">Crear Nueva Tarea</label>

@@ -99,6 +99,17 @@ export default createStore({
           alert("usuario creado");
         });
     },
+    updatePassword(context, data) {
+      Axios.post("http://localhost:5000/api/v1/update-password", data, {
+        headers: {
+          "access-token": localStorage.getItem("access-token"),
+        },
+      })
+        .then((res) => {
+          alert("constraseña actualizada");
+        })
+        .catch((err) => console.log(err));
+    },
     createTask(context, datas) {
       Axios.post("http://localhost:5000/api/v1/create-task", datas, {
         headers: {

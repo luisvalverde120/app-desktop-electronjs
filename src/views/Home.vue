@@ -2,7 +2,8 @@
   <div class="h-full">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/create-task">Create Task</router-link>
+      <router-link to="/create-task">Create Task</router-link> |
+      <router-link to="/cambiar-password">Cambiar contraseña</router-link>
     </div>
     <div class="flex flex-col items-center">
       <label class="mt-5 text-2xl">Inicio</label>

@@ -4,6 +4,7 @@ import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import CreateTask from "../views/CreateTask.vue";
 import store from "../store/index";
+import ChangePassword from "../views/ChangePassword.vue";
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     path: "/create-task",
     name: "CreateTask",
     component: CreateTask,
+  },
+  {
+    path: "/cambiar-password",
+    name: "ChangePassword",
+    component: ChangePassword,
   },
 ];
 
